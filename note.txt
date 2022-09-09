@@ -1,0 +1,3 @@
+1、github.com/emersion/go-imap/client  登录报错
+invalid greeting received from server: not a status response
+原因：邮件协议不对
