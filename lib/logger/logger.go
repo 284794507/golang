@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 	"runtime"
 	"sync"
 	"time"
@@ -63,7 +64,7 @@ func Setup(settings *Settings) {
 func setPrefix(level logLevel) {
 	_, file, line, ok := runtime.Caller(defaultCallerDepth)
 	if ok {
-		logPrefix = fmt.Sprintf("[%s][%s:%d] ", levelFlags[level], fileptah.Base(file), line)
+		logPrefix = fmt.Sprintf("[%s][%s:%d] ", levelFlags[level], filepath.Base(file), line)
 	} else {
 		logPrefix = fmt.Sprintf("[%s] ", levelFlags[level])
 	}
