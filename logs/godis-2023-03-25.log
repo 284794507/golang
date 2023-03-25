@@ -1,0 +1,18 @@
+[ERROR][main.go:43] 2023/03/25 21:45:35 listen tcp: lookup tcp/%d0.0.0.06379: getaddrinfow: The specified class was not found.
+[ERROR][main.go:43] 2023/03/25 21:46:44 listen tcp: lookup tcp/%d0.0.0.06379: getaddrinfow: The specified class was not found.
+[ERROR][main.go:43] 2023/03/25 21:48:58 listen tcp: lookup tcp/%d0.0.0.06379: getaddrinfow: The specified class was not found.
+[ERROR][main.go:43] 2023/03/25 21:52:06 listen tcp: lookup tcp/%d0.0.0.06379: getaddrinfow: The specified class was not found.
+[INFO][server.go:23] 2023/03/25 21:52:10 start listen
+[INFO][server.go:56] 2023/03/25 21:55:10 accept link
+[INFO][server.go:41] 2023/03/25 21:55:51 shutting down
+[INFO][echo.go:64] 2023/03/25 21:55:51 handler shutting down
+[INFO][server.go:23] 2023/03/25 21:55:59 start listen
+[INFO][server.go:56] 2023/03/25 21:56:01 accept link
+[INFO][echo.go:44] 2023/03/25 21:56:05 connection close
+[INFO][server.go:56] 2023/03/25 21:56:05 accept link
+[INFO][echo.go:44] 2023/03/25 21:57:13 connection close
+[INFO][server.go:56] 2023/03/25 21:57:14 accept link
+[INFO][server.go:41] 2023/03/25 21:58:28 shutting down
+[INFO][echo.go:64] 2023/03/25 21:58:28 handler shutting down
+[INFO][server.go:23] 2023/03/25 21:58:32 start listen
+[INFO][server.go:56] 2023/03/25 21:58:33 accept link
