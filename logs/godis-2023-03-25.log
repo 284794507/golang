@@ -16,3 +16,5 @@
 [INFO][echo.go:64] 2023/03/25 21:58:28 handler shutting down
 [INFO][server.go:23] 2023/03/25 21:58:32 start listen
 [INFO][server.go:56] 2023/03/25 21:58:33 accept link
+[INFO][server.go:41] 2023/03/26 22:21:41 shutting down
+[INFO][echo.go:63] 2023/03/26 22:21:41 handler shutting down
