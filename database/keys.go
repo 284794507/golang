@@ -2,6 +2,7 @@ package database
 
 import (
 	"go-redis/interface/resp"
+	"go-redis/lib/wildcard"
 	"go-redis/resp/reply"
 )
 
@@ -72,6 +73,21 @@ func renamenx(db *DB, args [][]byte) resp.Reply {
 	return reply.MakeStandardErrReply("no such key")
 }
 
+func execKeys(db *DB, args [][]byte) resp.Reply {
+	pattern, err := wildcard.CompilePattern(string(args[0]))
+	if err != nil {
+		return reply.MakeStandardErrReply("pattern key error")
+	}
+	result := make([][]byte, 0)
+	db.data.ForEach(func(key string, val interface{}) bool {
+		if pattern.IsMatch(key) {
+			result = append(result, []byte(key))
+		}
+		return true
+	})
+	return reply.MakeMultiBulkReply(result)
+}
+
 func init() {
 	RegisterCommand("del", Del, -2)
 	RegisterCommand("exists", exists, -2)
@@ -79,4 +95,5 @@ func init() {
 	RegisterCommand("type", execType, 2)
 	RegisterCommand("rename", rename, 3)
 	RegisterCommand("renamenx", renamenx, 3)
+	RegisterCommand("keys", execKeys, 2)
 }
