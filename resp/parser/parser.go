@@ -1,8 +1,11 @@
 package parser
 
 import (
+	"bufio"
 	"go-redis/interface/resp"
+	"go-redis/lib/logger"
 	"io"
+	"runtime/debug"
 )
 
 type Payload struct {
@@ -29,5 +32,10 @@ func ParseStream(reader io.Reader) <-chan *Payload {
 }
 
 func parse0(reader io.Reader, ch <-chan *Payload) {
-
+	defer func() {
+		if err := recover(); err != nil {
+			logger.Error(string(debug.Stack()))
+		}
+	}()
+	bufReader := bufio.NewReader(reader)
 }

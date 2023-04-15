@@ -19,3 +19,8 @@ func (e EchoDatabase) Exec(client resp.Connection, args [][]byte) resp.Reply {
 func (e EchoDatabase) Close() {
 
 }
+
+func (e EchoDatabase) AfterClientClose(c resp.Connection) {
+	//TODO implement me
+	panic("implement me")
+}

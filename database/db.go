@@ -47,10 +47,16 @@ func (db *DB) GetEntity(key string) (*database.DataEntity, bool) {
 	}, ok
 }
 
-func (db *DB) PutEntity(key string, val interface{}) {
-	db.data.Put(key, &database.DataEntity{
-		Data: val,
-	})
+func (db *DB) PutEntity(key string, entity *database.DataEntity) int {
+	return db.data.Put(key, entity)
+}
+
+func (db *DB) PutIfExists(key string, entity *database.DataEntity) int {
+	return db.data.PutIfExists(key, entity)
+}
+
+func (db *DB) PutIfAbsent(key string, entity *database.DataEntity) int {
+	return db.data.PutIfAbsent(key, entity)
 }
 
 func (db *DB) Remove(key string) {
