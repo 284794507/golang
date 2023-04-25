@@ -1,0 +1,93 @@
+[INFO][server.go:23] 2023/04/24 20:55:54 start listen
+[INFO][server.go:56] 2023/04/24 20:56:00 accept link
+[INFO][echo.go:44] 2023/04/24 20:59:32 connection close
+[INFO][server.go:56] 2023/04/24 20:59:33 accept link
+[INFO][echo.go:44] 2023/04/24 20:59:46 connection close
+[INFO][server.go:56] 2023/04/24 20:59:46 accept link
+[INFO][server.go:41] 2023/04/24 21:00:07 shutting down
+[INFO][echo.go:63] 2023/04/24 21:00:07 handler shutting down
+[WARN][echo.go:47] 2023/04/24 21:00:07 read tcp 127.0.0.1:6379->127.0.0.1:51960: use of closed network connection
+[INFO][echo.go:63] 2023/04/24 21:00:07 handler shutting down
+[INFO][server.go:23] 2023/04/24 21:00:09 start listen
+[INFO][server.go:56] 2023/04/24 21:00:12 accept link
+[INFO][server.go:41] 2023/04/24 21:00:13 shutting down
+[INFO][echo.go:63] 2023/04/24 21:00:13 handler shutting down
+[WARN][echo.go:47] 2023/04/24 21:00:13 read tcp 127.0.0.1:6379->127.0.0.1:51974: use of closed network connection
+[INFO][echo.go:63] 2023/04/24 21:00:13 handler shutting down
+[INFO][server.go:23] 2023/04/24 21:00:23 start listen
+[INFO][server.go:56] 2023/04/24 21:00:31 accept link
+[INFO][server.go:41] 2023/04/24 21:01:22 shutting down
+[INFO][echo.go:63] 2023/04/24 21:01:22 handler shutting down
+[WARN][echo.go:47] 2023/04/24 21:01:22 read tcp 127.0.0.1:6379->127.0.0.1:51983: use of closed network connection
+[INFO][echo.go:63] 2023/04/24 21:01:22 handler shutting down
+[INFO][server.go:23] 2023/04/24 21:01:59 start listen
+[INFO][server.go:56] 2023/04/24 21:02:02 accept link
+[INFO][echo.go:46] 2023/04/24 21:02:02 connection close
+[INFO][server.go:56] 2023/04/24 21:02:25 accept link
+[INFO][echo.go:46] 2023/04/24 21:03:27 connection close
+[INFO][server.go:56] 2023/04/24 21:03:40 accept link
+[INFO][server.go:41] 2023/04/24 21:03:55 shutting down
+[INFO][echo.go:65] 2023/04/24 21:03:55 handler shutting down
+[WARN][echo.go:49] 2023/04/24 21:03:55 read tcp 127.0.0.1:6379->127.0.0.1:52038: use of closed network connection
+[INFO][echo.go:65] 2023/04/24 21:03:55 handler shutting down
+[INFO][server.go:23] 2023/04/24 21:05:03 start listen
+[INFO][server.go:56] 2023/04/24 21:05:05 accept link
+[INFO][server.go:41] 2023/04/24 21:08:00 shutting down
+[INFO][server.go:23] 2023/04/24 21:08:03 start listen
+[INFO][server.go:56] 2023/04/24 21:08:08 accept link
+[INFO][server.go:41] 2023/04/24 21:26:58 shutting down
+[INFO][server.go:23] 2023/04/24 21:27:01 start listen
+[INFO][server.go:56] 2023/04/24 21:27:05 accept link
+[ERROR][handler.go:54] 2023/04/24 21:27:07 protocol error:illegal bulk string header:$4ping
+[ERROR][handler.go:71] 2023/04/24 21:27:41 require multi bulk reply
+[ERROR][handler.go:71] 2023/04/24 21:28:01 require multi bulk reply
+[INFO][server.go:41] 2023/04/24 21:28:32 shutting down
+[INFO][server.go:23] 2023/04/24 21:28:56 start listen
+[INFO][server.go:56] 2023/04/24 21:28:58 accept link
+[ERROR][handler.go:73] 2023/04/24 21:29:00 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:29:36 require multi bulk reply
+[INFO][server.go:41] 2023/04/24 21:33:09 shutting down
+[INFO][server.go:23] 2023/04/24 21:33:12 start listen
+[INFO][server.go:56] 2023/04/24 21:33:14 accept link
+[ERROR][handler.go:73] 2023/04/24 21:33:15 require multi bulk reply
+[INFO][server.go:41] 2023/04/24 21:36:09 shutting down
+[INFO][server.go:23] 2023/04/24 21:36:13 start listen
+[INFO][server.go:56] 2023/04/24 21:36:14 accept link
+[ERROR][handler.go:73] 2023/04/24 21:36:15 require multi bulk reply
+[ERROR][handler.go:54] 2023/04/24 21:44:41 EOF
+[INFO][handler.go:37] 2023/04/24 21:44:41 connection close:127.0.0.1:52500
+[INFO][server.go:56] 2023/04/24 21:44:41 accept link
+[ERROR][handler.go:73] 2023/04/24 21:47:07 require multi bulk reply
+[INFO][server.go:56] 2023/04/24 21:50:22 accept link
+[ERROR][handler.go:73] 2023/04/24 21:50:32 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:50:32 require multi bulk reply
+[INFO][server.go:41] 2023/04/24 21:50:40 shutting down
+[INFO][server.go:23] 2023/04/24 21:50:43 start listen
+[INFO][server.go:56] 2023/04/24 21:50:57 accept link
+[ERROR][handler.go:73] 2023/04/24 21:52:22 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:52:25 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:54:24 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:55:21 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:55:27 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 21:58:15 require multi bulk reply
+[ERROR][handler.go:73] 2023/04/24 22:00:49 require multi bulk reply
+[ERROR][handler.go:54] 2023/04/24 22:09:55 EOF
+[INFO][handler.go:37] 2023/04/24 22:09:55 connection close:127.0.0.1:52794
+[INFO][server.go:56] 2023/04/24 22:09:55 accept link
+[INFO][server.go:41] 2023/04/24 22:09:55 shutting down
+[INFO][server.go:23] 2023/04/24 22:22:49 start listen
+[INFO][server.go:56] 2023/04/24 22:22:55 accept link
+[ERROR][handler.go:78] 2023/04/24 22:23:00 require multi bulk reply
+[ERROR][handler.go:78] 2023/04/24 22:23:37 require multi bulk reply
+[ERROR][handler.go:78] 2023/04/24 22:24:27 require multi bulk reply
+[INFO][server.go:41] 2023/04/24 22:24:27 shutting down
+[INFO][server.go:23] 2023/04/24 22:24:44 start listen
+[INFO][server.go:56] 2023/04/24 22:24:47 accept link
+[INFO][server.go:23] 2023/04/24 22:25:52 start listen
+[INFO][server.go:56] 2023/04/24 22:25:54 accept link
+[INFO][server.go:23] 2023/04/24 22:26:41 start listen
+[INFO][server.go:56] 2023/04/24 22:26:43 accept link
+[INFO][server.go:41] 2023/04/24 22:27:00 shutting down
+[INFO][server.go:23] 2023/04/24 22:27:21 start listen
+[INFO][server.go:56] 2023/04/24 22:27:23 accept link
+[INFO][server.go:41] 2023/04/24 22:27:30 shutting down

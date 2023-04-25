@@ -1,0 +1,69 @@
+[INFO][server.go:23] 2023/04/25 22:48:27 start listen
+[INFO][server.go:56] 2023/04/25 22:48:35 accept link
+[ERROR][handler.go:76] 2023/04/25 22:49:50 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:51:08 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:51:08 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:51:08 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:51:48 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:51:48 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:52:02 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:52:02 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:52:02 require multi bulk reply
+[INFO][server.go:41] 2023/04/25 22:56:37 shutting down
+[INFO][server.go:23] 2023/04/25 22:57:57 start listen
+[INFO][server.go:56] 2023/04/25 22:58:04 accept link
+[ERROR][handler.go:76] 2023/04/25 22:58:53 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 22:58:53 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 23:01:59 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 23:02:00 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 23:02:29 require multi bulk reply
+[ERROR][handler.go:76] 2023/04/25 23:02:29 require multi bulk reply
+[INFO][server.go:41] 2023/04/25 23:02:29 shutting down
+[INFO][server.go:23] 2023/04/25 23:11:18 start listen
+[INFO][server.go:56] 2023/04/25 23:11:21 accept link
+[ERROR][handler.go:54] 2023/04/25 23:12:27 strconv.Atoi: parsing "3\r\n": invalid syntax
+[INFO][server.go:41] 2023/04/25 23:12:27 shutting down
+[INFO][server.go:23] 2023/04/25 23:12:31 start listen
+[INFO][server.go:56] 2023/04/25 23:12:35 accept link
+[INFO][server.go:41] 2023/04/25 23:16:50 shutting down
+[INFO][server.go:23] 2023/04/25 23:16:55 start listen
+[INFO][server.go:56] 2023/04/25 23:17:01 accept link
+[ERROR][database.go:33] 2023/04/25 23:17:14 interface conversion: interface {} is nil, not []uint8
+[ERROR][database.go:33] 2023/04/25 23:19:00 interface conversion: interface {} is nil, not []uint8
+[ERROR][database.go:33] 2023/04/25 23:19:07 interface conversion: interface {} is nil, not []uint8
+[ERROR][database.go:33] 2023/04/25 23:19:56 interface conversion: interface {} is nil, not []uint8
+[ERROR][database.go:33] 2023/04/25 23:20:23 interface conversion: interface {} is nil, not []uint8
+[ERROR][database.go:33] 2023/04/25 23:21:16 interface conversion: interface {} is nil, not []uint8
+[INFO][server.go:41] 2023/04/25 23:24:05 shutting down
+[INFO][server.go:23] 2023/04/25 23:24:31 start listen
+[INFO][server.go:56] 2023/04/25 23:24:34 accept link
+[ERROR][database.go:33] 2023/04/25 23:24:46 interface conversion: interface {} is *database.DataEntity, not []uint8
+[INFO][server.go:41] 2023/04/25 23:25:19 shutting down
+[INFO][server.go:23] 2023/04/25 23:25:22 start listen
+[INFO][server.go:56] 2023/04/25 23:25:24 accept link
+[ERROR][database.go:33] 2023/04/25 23:26:31 interface conversion: interface {} is *database.DataEntity, not []uint8
+[ERROR][database.go:33] 2023/04/25 23:27:36 interface conversion: interface {} is *database.DataEntity, not []uint8
+[INFO][server.go:41] 2023/04/25 23:27:36 shutting down
+[INFO][server.go:23] 2023/04/25 23:28:05 start listen
+[INFO][server.go:56] 2023/04/25 23:28:13 accept link
+[INFO][server.go:41] 2023/04/25 23:31:51 shutting down
+[INFO][server.go:23] 2023/04/25 23:34:44 start listen
+[INFO][server.go:56] 2023/04/25 23:34:51 accept link
+[INFO][server.go:41] 2023/04/25 23:38:11 shutting down
+[INFO][server.go:23] 2023/04/25 23:38:15 start listen
+[INFO][server.go:56] 2023/04/25 23:38:27 accept link
+[INFO][server.go:41] 2023/04/25 23:39:57 shutting down
+[INFO][server.go:23] 2023/04/25 23:39:59 start listen
+[INFO][server.go:56] 2023/04/25 23:40:14 accept link
+[INFO][server.go:41] 2023/04/25 23:40:43 shutting down
+[INFO][server.go:23] 2023/04/25 23:42:39 start listen
+[INFO][server.go:56] 2023/04/25 23:42:41 accept link
+[INFO][server.go:41] 2023/04/25 23:43:43 shutting down
+[INFO][server.go:23] 2023/04/25 23:44:31 start listen
+[INFO][server.go:56] 2023/04/25 23:44:37 accept link
+[INFO][server.go:41] 2023/04/25 23:45:10 shutting down
+[INFO][server.go:23] 2023/04/25 23:45:12 start listen
+[INFO][server.go:56] 2023/04/25 23:45:20 accept link
+[ERROR][handler.go:54] 2023/04/25 23:45:46 EOF
+[INFO][handler.go:37] 2023/04/25 23:45:46 connection close:127.0.0.1:51506
+[INFO][server.go:41] 2023/04/25 23:47:44 shutting down

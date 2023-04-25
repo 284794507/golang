@@ -13,7 +13,8 @@ func execGet(db *DB, args [][]byte) resp.Reply {
 	if !exists {
 		return reply.MakeNullBulkReply()
 	}
-	bytes := entity.Data.([]byte)
+	result := entity.Data
+	bytes := result.([]byte)
 	return reply.MakeBulkReply(bytes)
 }
 
@@ -62,9 +63,9 @@ func execStrLen(db *DB, args [][]byte) resp.Reply {
 }
 
 func init() {
-	RegisterCommand("execGet", execGet, 2)
-	RegisterCommand("execSet", execSet, 3)
-	RegisterCommand("execSetnx", execSetnx, 3)
-	RegisterCommand("execGetSet", execGetSet, 3)
-	RegisterCommand("execStrLen", execStrLen, 2)
+	RegisterCommand("get", execGet, 2)
+	RegisterCommand("set", execSet, 3)
+	RegisterCommand("setnx", execSetnx, 3)
+	RegisterCommand("getSet", execGetSet, 3)
+	RegisterCommand("strLen", execStrLen, 2)
 }

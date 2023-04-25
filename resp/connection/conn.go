@@ -93,6 +93,14 @@ func (c *Connection) Write(b []byte) (int, error) {
 	return c.conn.Write(b)
 }
 
+func (c *Connection) GetDBIndex() int {
+	return c.selectedDB
+}
+
+func (c *Connection) SelectDB(dbNum int) {
+	c.selectedDB = dbNum
+}
+
 func (c *Connection) Name() string {
 	if c.conn != nil {
 		return c.conn.RemoteAddr().String()
@@ -190,14 +198,6 @@ func (c *Connection) GetWatching() map[string]uint32 {
 		c.watching = make(map[string]uint32)
 	}
 	return c.watching
-}
-
-func (c *Connection) GetDBIndex() int {
-	return c.selectedDB
-}
-
-func (c *Connection) SelectDB(dbNum int) {
-	c.selectedDB = dbNum
 }
 
 func (c *Connection) SetSlave() {

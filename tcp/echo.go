@@ -3,6 +3,7 @@ package tcp
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"go-redis/lib/logger"
 	"go-redis/lib/sync/atomic"
 	"go-redis/lib/sync/wait"
@@ -29,6 +30,7 @@ type EchoHandler struct {
 }
 
 func (handler *EchoHandler) Handle(ctx context.Context, conn net.Conn) {
+	fmt.Println("EchoHandler")
 	if handler.closing.Get() {
 		_ = conn.Close()
 	}

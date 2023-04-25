@@ -1,6 +1,8 @@
 package dict
 
-import "sync"
+import (
+	"sync"
+)
 
 type SyncDict struct {
 	m sync.Map
@@ -25,7 +27,7 @@ func (dict *SyncDict) Len() int {
 }
 
 func (dict *SyncDict) Put(key string, val interface{}) (result int) {
-	val, ok := dict.m.Load(key)
+	_, ok := dict.m.Load(key)
 	dict.m.Store(key, val)
 	if ok {
 		return 0
@@ -34,7 +36,7 @@ func (dict *SyncDict) Put(key string, val interface{}) (result int) {
 }
 
 func (dict *SyncDict) PutIfAbsent(key string, val interface{}) (result int) {
-	val, ok := dict.m.Load(key)
+	_, ok := dict.m.Load(key)
 	if ok {
 		return 0
 	}
@@ -43,7 +45,7 @@ func (dict *SyncDict) PutIfAbsent(key string, val interface{}) (result int) {
 }
 
 func (dict *SyncDict) PutIfExists(key string, val interface{}) (result int) {
-	val, ok := dict.m.Load(key)
+	_, ok := dict.m.Load(key)
 	if ok {
 		dict.m.Store(key, val)
 		return 1

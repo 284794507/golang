@@ -27,7 +27,7 @@ func (db *DB) Exec(c resp.Connection, cmdLine CmdLine) resp.Reply {
 	name := strings.ToLower(string(cmdLine[0]))
 	cmd, ok := cmdTable[name]
 	if !ok {
-		return reply.MakeStandardErrReply("ERR unknown command" + name)
+		return reply.MakeStandardErrReply("ERR unknown command: " + name)
 	}
 	if !validArity(cmd.arity, cmdLine) {
 		return reply.MakeArgNumErrReply(name)
@@ -48,15 +48,15 @@ func (db *DB) GetEntity(key string) (*database.DataEntity, bool) {
 }
 
 func (db *DB) PutEntity(key string, entity *database.DataEntity) int {
-	return db.data.Put(key, entity)
+	return db.data.Put(key, entity.Data)
 }
 
 func (db *DB) PutIfExists(key string, entity *database.DataEntity) int {
-	return db.data.PutIfExists(key, entity)
+	return db.data.PutIfExists(key, entity.Data)
 }
 
 func (db *DB) PutIfAbsent(key string, entity *database.DataEntity) int {
-	return db.data.PutIfAbsent(key, entity)
+	return db.data.PutIfAbsent(key, entity.Data)
 }
 
 func (db *DB) Remove(key string) {
