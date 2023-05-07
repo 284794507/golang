@@ -1,6 +1,6 @@
 package utils
 
-//tocmdline convert strings to [][]byte
+// tocmdline convert strings to [][]byte
 func ToCmdLine(cmd ...string) [][]byte {
 	args := make([][]byte, len(cmd))
 	for i, s := range cmd {
@@ -9,8 +9,8 @@ func ToCmdLine(cmd ...string) [][]byte {
 	return args
 }
 
-//tocmdline2 convert commandName and string-type argument to [][]byte
-func ToCmdline2(commandName string, args ...string) [][]byte {
+// tocmdline2 convert commandName and string-type argument to [][]byte
+func ToCmdLine2(commandName string, args ...string) [][]byte {
 	result := make([][]byte, len(args)+1)
 	result[0] = []byte(commandName)
 	for i, s := range args {
@@ -19,7 +19,7 @@ func ToCmdline2(commandName string, args ...string) [][]byte {
 	return result
 }
 
-//tocmdline3 convert commandName and []byte-type argument to cmdline
+// tocmdline3 convert commandName and []byte-type argument to cmdline
 func ToCmdLine3(commandName string, args ...[]byte) [][]byte {
 	result := make([][]byte, len(args)+1)
 	result[0] = []byte(commandName)

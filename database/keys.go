@@ -2,6 +2,7 @@ package database
 
 import (
 	"go-redis/interface/resp"
+	"go-redis/lib/utils"
 	"go-redis/lib/wildcard"
 	"go-redis/resp/reply"
 )
@@ -13,6 +14,9 @@ func Del(db *DB, args [][]byte) resp.Reply {
 		keys[i] = string(v)
 	}
 	deleted := db.Removes(keys...)
+	if deleted > 0 {
+		db.addAof(utils.ToCmdLine3("del", args...))
+	}
 	return reply.MakeIntReply(int64(deleted))
 }
 
@@ -30,6 +34,7 @@ func exists(db *DB, args [][]byte) resp.Reply {
 
 func flushDB(db *DB, args [][]byte) resp.Reply {
 	db.Flush()
+	db.addAof(utils.ToCmdLine3("flushdb", args...))
 	return reply.MakeOkReply()
 }
 
@@ -53,6 +58,7 @@ func rename(db *DB, args [][]byte) resp.Reply {
 	if ok {
 		db.PutEntity(k2, val)
 		db.Remove(k1)
+		db.addAof(utils.ToCmdLine3("rename", args...))
 		return reply.MakeOkReply()
 	}
 	return reply.MakeStandardErrReply("no such key")
@@ -68,6 +74,7 @@ func renamenx(db *DB, args [][]byte) resp.Reply {
 	if ok {
 		db.PutEntity(k2, val)
 		db.Remove(k1)
+		db.addAof(utils.ToCmdLine3("renamenx", args...))
 		return reply.MakeIntReply(1)
 	}
 	return reply.MakeStandardErrReply("no such key")

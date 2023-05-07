@@ -77,6 +77,7 @@ func NewConn(conn net.Conn) *Connection {
 		}
 	}
 	c.conn = conn
+	c.selectedDB = 0
 	return c
 }
 

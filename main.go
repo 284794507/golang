@@ -9,6 +9,7 @@ import (
 	"os"
 )
 
+// https://github.com/HDT3213/godis/blob/master/lib/sync/wait/wait.go
 const configFile string = "redis.conf"
 
 var defaultProperties = &config.ServerProperties{
