@@ -8,6 +8,9 @@ import (
 	"go-redis/interface/database"
 	"go-redis/interface/resp"
 	"go-redis/lib/consistenthash"
+	"go-redis/lib/logger"
+	"go-redis/resp/reply"
+	"strings"
 )
 
 type ClusterDateBase struct {
@@ -32,27 +35,43 @@ func MakeClusterDatabase() *ClusterDateBase {
 	nodes = append(nodes, config.Properties.Peers...)
 	cluster.peerPicker.AddNode(nodes...)
 	ctx := context.Background()
+	peerMap := make(map[string]*pool.ObjectPool)
 	for _, peer := range config.Properties.Peers {
-		pool.NewObjectPoolWithDefaultConfig(ctx, &connnectionFactory{
+		peerPool := pool.NewObjectPoolWithDefaultConfig(ctx, &connnectionFactory{
 			Peer: peer,
 		})
+		peerMap[peer] = peerPool
 	}
+	cluster.peerConnection = peerMap
 	cluster.nodes = nodes
 
 	return cluster
 }
 
-func (c *ClusterDateBase) Exec(client resp.Connection, args [][]byte) resp.Reply {
-	//TODO implement me
-	panic("implement me")
+type CmdFunc func(cluster *ClusterDateBase, c resp.Connection, cmdArgs [][]byte) resp.Reply
+
+var router = makeRouter()
+
+func (c *ClusterDateBase) Exec(client resp.Connection, args [][]byte) (result resp.Reply) {
+	defer func() {
+		if err := recover(); err != nil {
+			logger.Error(err)
+			result = reply.UnKonwErrReply{}
+		}
+	}()
+
+	execFunc, ok := router[strings.ToLower(string(args[0]))]
+	if !ok {
+		return reply.MakeStatusReply("not supported cmd")
+	}
+	result = execFunc(c, client, args)
+	return
 }
 
 func (c *ClusterDateBase) Close() {
-	//TODO implement me
-	panic("implement me")
+	c.db.Close()
 }
 
 func (c *ClusterDateBase) AfterClientClose(conn resp.Connection) {
-	//TODO implement me
-	panic("implement me")
+	c.db.AfterClientClose(conn)
 }

@@ -3,6 +3,8 @@ package handler
 import (
 	"context"
 	"fmt"
+	"go-redis/cluster"
+	"go-redis/config"
 	"go-redis/database"
 	idatabase "go-redis/interface/database"
 	"go-redis/lib/logger"
@@ -27,7 +29,11 @@ type RespHandler struct {
 
 func MakeHandler() *RespHandler {
 	var db idatabase.Datebase
-	db = database.NewDatabase()
+	if config.Properties.Self != "" && len(config.Properties.Peers) != 0 {
+		db = cluster.MakeClusterDatabase()
+	} else {
+		db = database.NewDatabase()
+	}
 	return &RespHandler{
 		db: db,
 	}
@@ -50,6 +56,7 @@ func (r *RespHandler) Handle(ctx context.Context, conn net.Conn) {
 	client := connection.NewConn(conn)
 	r.activeConn.Store(client, struct{}{})
 	for chPayload := range parser.ParseStream(conn) {
+		fmt.Println("RespHandler chPayload:", chPayload)
 		if chPayload.Err != nil {
 			logger.Error(chPayload.Err)
 			if chPayload.Err == io.EOF || chPayload.Err == io.ErrUnexpectedEOF {
@@ -71,13 +78,18 @@ func (r *RespHandler) Handle(ctx context.Context, conn net.Conn) {
 		case *reply.StatusReply:
 			newArgs = append(newArgs, ([]byte)(curReply.Status))
 		case *reply.MultiBulkReply:
+
 			newArgs = curReply.Args
 		default:
 			logger.Error("require multi bulk reply")
 			continue
 		}
+		for _, arg := range newArgs {
+			fmt.Println("RespHandler arg:", string(arg))
+		}
 		result := r.db.Exec(client, newArgs)
 		if result != nil {
+			fmt.Println("RespHandler result:", string(result.ToBytes()))
 			client.Write(result.ToBytes())
 		} else {
 			client.Write(unknowErrReplyBytes)

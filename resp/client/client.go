@@ -1,18 +1,28 @@
 package client
 
+/**
+*每个client都是一对一通讯，chan就像一个队列，先进先出
+*每次请求发出以后，将请求体指针放到等待回复的队列中
+*如果请求正常返回，则通过指针将返回更新到请求体中
+ */
+
+import (
+	"net"
+	"sync"
+	"time"
+)
+
 import (
 	"errors"
+	"fmt"
 	"go-redis/interface/resp"
 	"go-redis/lib/logger"
 	"go-redis/lib/sync/wait"
 	"go-redis/resp/parser"
 	"go-redis/resp/reply"
-	"net"
 	"runtime/debug"
 	"strings"
-	"sync"
 	"sync/atomic"
-	"time"
 )
 
 const (
@@ -49,6 +59,7 @@ const (
 
 // MakeClient creates a new client
 func MakeClient(addr string) (*Client, error) {
+	logger.Info("Dial with:" + addr)
 	conn, err := net.Dial("tcp", addr)
 	if err != nil {
 		return nil, err
@@ -66,12 +77,7 @@ func MakeClient(addr string) (*Client, error) {
 func (client *Client) Start() {
 	client.ticker = time.NewTicker(10 * time.Second)
 	go client.handleWrite()
-	go func() {
-		err := client.handleRead
-		if err != nil {
-			logger.Error(err)
-		}
-	}()
+	go client.handleRead()
 	go client.heartbeat()
 	atomic.StoreInt32(&client.status, running)
 }
@@ -168,12 +174,17 @@ func (client *Client) doRequest(req *request) {
 	if req == nil || len(req.args) == 0 {
 		return
 	}
+	fmt.Println("Client doRequest:", req)
+	for _, arg := range req.args {
+		fmt.Println("Client doRequest arg:", string(arg))
+	}
 	re := reply.MakeMultiBulkReply(req.args)
 	bytes := re.ToBytes()
 	var err error
 	for i := 0; i < 3; i++ {
 		_, err = client.conn.Write(bytes)
-		if err != nil ||
+		fmt.Println("Client err:", err)
+		if err == nil ||
 			(!strings.Contains(err.Error(), "timeout") &&
 				!strings.Contains(err.Error(), "deadline exceeded")) {
 			break
@@ -194,11 +205,13 @@ func (client *Client) finishRequest(reply resp.Reply) {
 			logger.Error(err)
 		}
 	}()
+	fmt.Println("Client finishRequest reply:", reply)
 	request := <-client.waitingReqs
 	if request == nil {
 		return
 	}
 	request.reply = reply
+	fmt.Println("Client finishRequest request:", request)
 	if request.waiting != nil {
 		request.waiting.Done()
 	}
@@ -207,6 +220,7 @@ func (client *Client) finishRequest(reply resp.Reply) {
 func (client *Client) handleRead() {
 	ch := parser.ParseStream(client.conn)
 	for payload := range ch {
+		fmt.Println("Client handleRead payload:", payload)
 		if payload.Err != nil {
 			status := atomic.LoadInt32(&client.status)
 			if status == closed {
@@ -232,6 +246,11 @@ func (client *Client) Send(args [][]byte) resp.Reply {
 	request.waiting.Add(1)
 	client.working.Add(1)
 	defer client.working.Done()
+
+	fmt.Println("Client Send request1:", request)
+	for _, arg := range request.args {
+		fmt.Println("Client Send arg:", string(arg))
+	}
 	client.pendingReqs <- request
 	timeout := request.waiting.WaitWithTimeout(maxWait)
 	if timeout {
@@ -240,5 +259,6 @@ func (client *Client) Send(args [][]byte) resp.Reply {
 	if request.err != nil {
 		return reply.MakeStandardErrReply("request failed")
 	}
+	fmt.Println("Client Send request2:", request)
 	return request.reply
 }
